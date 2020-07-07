@@ -27,5 +27,14 @@
         <button type="submit" class="btn btn-primary">送信</button>
     </form>
 </div>
+<div class="container">
+    @foreach($portfolios as $portfolio)
+        <div>
+            <div>{{ $portfolio['name'] ?? 'なし' }}</div>
+            <div>{{ $portfolio['memo'] ?? 'なし' }}</div>
+        </div>
+        {{ dd($portfolio) }}
+    @endforeach
+</div>
 </body>
 </html>

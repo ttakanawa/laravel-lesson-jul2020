@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $portfolios = resolve(PortfolioRepository::class)->getAll();
+        return view('index', compact('portfolios'));
     }
 
     public function store(Request $request)

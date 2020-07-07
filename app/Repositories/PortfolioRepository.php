@@ -6,6 +6,19 @@ use Illuminate\Contracts\Filesystem\Filesystem;
 
 class PortfolioRepository
 {
+    public function getAll()
+    {
+        $portfolio = collect();
+        foreach(resolve(Filesystem::class)->files() as $file) {
+            if ($file === '.gitignore') {
+                continue;
+            }
+            $contents = resolve(Filesystem::class)->get($file);
+            $portfolio[] = json_decode($contents, true);
+        }
+        return $portfolio;
+    }
+
     public function create(array $data)
     {
         resolve(Filesystem::class)
